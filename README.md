@@ -2,7 +2,6 @@
 
 [![中文](https://img.shields.io/badge/语言-中文-black)](./README.md) [![English](https://img.shields.io/badge/Language-English-lightgrey)](./README_EN.md)
 
-中文说明在前，English version is available via the button above.
 
 ## 中文版
 

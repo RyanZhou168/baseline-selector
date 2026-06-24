@@ -1,95 +1,99 @@
 # Baseline Selector
 
-Choose baselines like a serious paper author, not like someone scrolling citations at 2 a.m.
+中文说明在前，English version below.
 
-`baseline-selector` is a Codex skill for turning a research idea, task, paper draft, or experiment plan into a defensible baseline decision. It searches for classic anchors, recent strong methods, reviewer-expected comparisons, and practical open-source baselines, then filters them through a hard GitHub reproducibility gate before recommending what to actually run.
+## 中文版
 
-## First-screen example
+像认真写论文的人一样选 baseline，而不是半夜刷 citation 凭感觉选。
+
+`baseline-selector` 是一个 Codex skill，用来把研究想法、任务定义、论文草稿或实验计划，变成一个更可辩护的 baseline 决策流程。它会搜索经典方法、近期强方法、审稿人可能期待的比较对象，以及实用的开源 baseline，然后先经过 GitHub 可复现门槛，再决定哪些方法真正值得跑。
+
+### 首屏示例
 
 ```text
-Input:
-I have an LLM agent memory idea.
-Target venue: ICML 2027.
-Compute budget: 4x A100 for 5 days.
-Time budget: 2 weeks.
-Task: long-horizon agent tasks with memory and tool use.
+输入：
+我有一个 LLM agent memory 的 idea。
+目标会议：ICML 2027。
+算力预算：4x A100，5 天。
+时间预算：2 周。
+任务：带工具调用的长程 agent memory。
 
-Output:
-- classic anchors
-- latest reproducible baselines
-- excluded no-code or unrunnable SOTA papers
-- compute-aware recommendation
+输出：
+- 经典 anchor baselines
+- 最新可复现 baselines
+- 无代码或不可运行的 SOTA 排除项
+- 考虑算力约束的推荐集合
 - reviewer-risk audit
-- self-check before final baseline decision
+- 最终 baseline 决策前的 self-check
 ```
 
-## Why this exists
+### 这个项目解决什么问题
 
-Most baseline selection is messy.
+很多人选 baseline 的方式其实很混乱，常见情况包括：
 
-People usually do some combination of:
-- picking famous papers from memory
-- copying a related-work section
-- trusting a leaderboard row without checking code
-- over-selecting methods they cannot actually run
-- forgetting what reviewers will immediately ask for
+- 凭印象挑几篇有名论文
+- 直接沿用 related work 里的方法名
+- 看 leaderboard 但不检查代码是否真的能跑
+- 一口气选太多自己根本跑不完的 baseline
+- 忘了审稿人会追问哪些漏掉的比较对象
 
-`baseline-selector` turns that into a more rigorous workflow:
-- real search date and freshness windows
-- real venue and year for each selected baseline
-- GitHub code gate before selection
-- compute-aware recommendations
-- explicit excluded-method records
-- self-check before the final recommendation
+`baseline-selector` 想把这件事变成一个更规整的流程：
 
-## Core workflow
+- 先记录真实检索日期和 freshness window
+- 为每个入选 baseline 记录真实 venue 和 year
+- 先过 GitHub 可复现门槛，再决定是否纳入
+- 根据会议目标和算力预算分层推荐
+- 显式记录排除项，而不是悄悄略过
+- 在最终建议前做 self-check
+
+### 核心流程
 
 ```mermaid
 flowchart LR
-    A[Current date] --> B[Task framing]
-    B --> C[Candidate search]
-    C --> D[GitHub reproducibility gate]
-    D --> E[Role classification]
-    E --> F[Compute and venue aware recommendation]
-    F --> G[Reviewer-risk audit]
-    G --> H[Self-check]
-    H --> I[Final baseline decision]
+    A[当前日期] --> B[任务定义]
+    B --> C[候选 baseline 搜索]
+    C --> D[GitHub 可复现门槛]
+    D --> E[baseline 角色分类]
+    E --> F[结合会议与算力做推荐]
+    F --> G[reviewer-risk audit]
+    G --> H[self-check]
+    H --> I[最终 baseline 决策]
 ```
 
-## Before and after
+### 和普通 baseline 选择的区别
 
-### Typical baseline selection
+#### 常见做法
 
-- citation-driven
-- unclear freshness
-- no venue/year audit
-- no code verification
-- no compute filter
-- no exclusion log
-- no self-check
+- citation 驱动
+- 新旧范围不清楚
+- 不核对 venue/year
+- 不验证代码
+- 不考虑算力上限
+- 没有排除项记录
+- 没有 self-check
 
-### With `baseline-selector`
+#### 用 `baseline-selector`
 
-- time-stamped search
-- venue and year recorded
-- GitHub reproducibility gate
-- budget-aware recommendation
-- excluded but relevant papers tracked
-- reviewer-risk audit
-- self-check before the final set
+- 带时间戳的检索
+- 明确记录 venue 和 year
+- GitHub 可复现门槛
+- 考虑预算的推荐
+- 记录重要但未纳入的方法
+- reviewer-risk 审核
+- 最终 self-check
 
-## What makes it different
+### 这个 skill 的独特点
 
-- No usable GitHub implementation, no selected baseline.
-- Every selected baseline records the real publication venue and year.
-- "Latest" means latest as of a real date, not vague model memory.
-- Final recommendations require a target venue/year and compute budget.
-- Repositories can be scored by reproducibility quality, not just labeled code/no-code.
-- Output can switch by user profile: paper submission, fast prototype, limited compute, industry comparison, or rebuttal emergency.
-- Search can route by domain conventions instead of pretending every field chooses baselines the same way.
-- Excluded methods still get recorded when they matter for related work or reviewer expectations.
+- 没有可用 GitHub 实现，就不能进正式 baseline 集合。
+- 每个入选 baseline 都要求真实 publication venue 和 year。
+- “latest” 必须以真实日期为准，而不是模糊的模型记忆。
+- 最终推荐必须结合目标会议年份和算力预算。
+- 仓库可以按 reproducibility quality 打分，而不只是“有代码/没代码”。
+- 输出可以按用户画像切换：投稿、快速验证、算力受限、工业对比、rebuttal 紧急模式。
+- 搜索会按领域路由，而不是假装所有领域都用同一套 baseline 选择逻辑。
+- 对于不能跑但又重要的论文，会记录为排除项，并保留 related work / reviewer 风险信息。
 
-## Required user inputs
+### 需要用户提供的信息
 
 ```text
 research idea / task
@@ -100,23 +104,24 @@ target venue and year
 compute budget / hardware limit
 time budget
 implementation constraints
-output profile (optional but useful)
+output profile（可选，但推荐写）
 ```
 
-Examples of target venue input:
+目标会议输入示例：
 
 - `ICML 2027`
 - `NeurIPS 2028`
 - `CVPR 2027`
 - `ACL 2026`
+- `AAAI 2027`
 
-Examples of compute input:
+算力输入示例：
 
 - `4x A100 for 5 days`
 - `1x 4090 for 4 days`
 - `inference-only for API baselines`
 
-## Output structure
+### 输出结构
 
 ```text
 baseline_selection/
@@ -131,11 +136,11 @@ baseline_selection/
 `- 09_final_decision.md
 ```
 
-## Quick start
+### 快速开始
 
 ```text
 Use $baseline-selector to choose baselines for my idea.
-Target venue: ICML 2027.
+Target venue: AAAI 2027.
 Compute budget: 4x A100 for 5 days.
 Time budget: 2 weeks.
 Task: long-context multimodal retrieval.
@@ -144,7 +149,7 @@ Metric: R@1.
 Output profile: paper submission mode
 ```
 
-Profile examples:
+输出画像示例：
 
 - `paper submission mode`
 - `fast prototype mode`
@@ -152,23 +157,23 @@ Profile examples:
 - `industry comparison mode`
 - `rebuttal emergency mode`
 
-## Installation
+### 安装
 
-### Windows
+#### Windows
 
 ```powershell
 git clone https://github.com/<your-name>/baseline-selector.git "$env:USERPROFILE\.codex\skills\baseline-selector"
 ```
 
-### macOS / Linux
+#### macOS / Linux
 
 ```bash
 git clone https://github.com/<your-name>/baseline-selector.git ~/.codex/skills/baseline-selector
 ```
 
-Then restart Codex or open a new session.
+然后重启 Codex，或者新开一个会话。
 
-## Repository layout
+### 仓库结构
 
 ```text
 .
@@ -181,13 +186,19 @@ Then restart Codex or open a new session.
 `- README.md
 ```
 
-## Design principles
+### 设计原则
 
-- Evidence before recommendation.
-- GitHub reproducibility before selection.
-- Venue-aware and compute-aware recommendations.
-- Explicit handling of excluded but relevant papers.
-- Self-check before the final answer.
+- 先证据，后推荐。
+- 先 GitHub 可复现，再纳入 baseline。
+- 推荐必须结合会议目标和算力预算。
+- 明确记录重要但未纳入的方法。
+- 最终必须 self-check。
+
+## English Version
+
+A concise English README is available here:
+
+- [README_EN.md](D:/desktop/baselineskill/README_EN.md)
 
 ## License
 

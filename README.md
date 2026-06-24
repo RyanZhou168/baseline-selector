@@ -1,13 +1,12 @@
 # Baseline Selector
 
-[![中文](https://img.shields.io/badge/语言-中文-black)](./README.md) [![English](https://img.shields.io/badge/Language-English-lightgrey)](./README_EN.md)
-
+[![中文](https://img.shields.io/badge/README-中文-black)](#中文版) [![English](https://img.shields.io/badge/README-English-lightgrey)](#english)
 
 ## 中文版
 
 把 baseline 选择这件事做得更扎实一点。
 
-`baseline-selector` 是一个 Codex skill，用来把研究想法、任务定义、论文草稿或实验计划，变成一个更可辩护的 baseline 决策流程。它会搜索经典方法、近期强方法、审稿人可能期待的比较对象，以及实用的开源 baseline，然后先经过 GitHub 可复现门槛，再决定哪些方法真正值得跑。
+`baseline-selector` 是一个 Codex skill，用来把研究想法、任务定义、论文草稿或实验计划，整理成一个更可辩护的 baseline 决策过程。它会搜索经典方法、近期强方法、审稿人可能期待的比较对象，以及实用的开源 baseline，然后先经过 GitHub 可复现门槛，再决定哪些方法真正值得跑。
 
 ### 首屏示例
 
@@ -46,20 +45,6 @@
 - 根据会议目标和算力预算分层推荐
 - 显式记录排除项，而不是悄悄略过
 - 在最终建议前做 self-check
-
-### 核心流程
-
-```mermaid
-flowchart LR
-    A[当前日期] --> B[任务定义]
-    B --> C[候选 baseline 搜索]
-    C --> D[GitHub 可复现门槛]
-    D --> E[baseline 角色分类]
-    E --> F[结合会议与算力做推荐]
-    F --> G[reviewer-risk audit]
-    G --> H[self-check]
-    H --> I[最终 baseline 决策]
-```
 
 ### 和普通 baseline 选择的区别
 
@@ -195,6 +180,141 @@ git clone https://github.com/RyanZhou168/baseline-selector.git ~/.codex/skills/b
 - 明确记录重要但未纳入的方法。
 - 最终必须 self-check。
 
-## License
+## English
+
+Make baseline selection more rigorous and easier to defend.
+
+`baseline-selector` is a Codex skill for turning a research idea, task, paper draft, or experiment plan into a more defensible baseline-selection process. It searches for classic anchors, recent strong methods, reviewer-expected comparisons, and practical open-source baselines, then filters them through a hard GitHub reproducibility gate before recommending what to actually run.
+
+### First-screen example
+
+```text
+Input:
+I have an LLM agent memory idea.
+Target venue: ICML 2027.
+Compute budget: 4x A100 for 5 days.
+Time budget: 2 weeks.
+Task: long-horizon agent tasks with memory and tool use.
+
+Output:
+- classic anchor baselines
+- latest reproducible baselines
+- excluded no-code or unrunnable SOTA papers
+- compute-aware recommendation
+- reviewer-risk audit
+- self-check before the final baseline decision
+```
+
+### What this project is for
+
+Baseline selection often becomes messy in practice. Common patterns include:
+
+- picking famous papers from memory
+- reusing method names from a related-work section
+- trusting leaderboard rows without checking code
+- selecting more baselines than the budget can actually support
+- forgetting the comparisons reviewers are likely to ask for
+
+`baseline-selector` tries to turn that into a more disciplined process:
+
+- record the real search date and freshness window
+- record the real venue and year for each selected baseline
+- pass the GitHub reproducibility gate before selection
+- recommend sets that respect venue goals and compute limits
+- record excluded candidates explicitly
+- run a self-check before the final recommendation
+
+### What makes it different
+
+- No usable GitHub implementation, no selected baseline.
+- Every selected baseline records the real publication venue and year.
+- "Latest" is tied to a real date, not vague model memory.
+- Final recommendations must reflect the target venue/year and compute budget.
+- Repositories can be scored by reproducibility quality, not just labeled code/no-code.
+- Output can switch by user profile: paper submission, fast prototype, limited compute, industry comparison, or rebuttal emergency.
+- Search can route by domain conventions instead of pretending every field chooses baselines the same way.
+- Important but unrunnable papers are still recorded as exclusions with related-work and reviewer-risk context.
+
+### Required inputs
+
+```text
+research idea / task
+domain
+dataset or benchmark
+metric
+target venue and year
+compute budget / hardware limit
+time budget
+implementation constraints
+output profile (optional but useful)
+```
+
+Venue examples:
+
+- `ICML 2027`
+- `NeurIPS 2028`
+- `CVPR 2027`
+- `ACL 2026`
+- `AAAI 2027`
+
+Compute examples:
+
+- `4x A100 for 5 days`
+- `1x 4090 for 4 days`
+- `inference-only for API baselines`
+
+### Output structure
+
+```text
+baseline_selection/
+|- 01_task_definition.md
+|- 02_search_strategy.md
+|- 03_candidate_baselines.md
+|- 04_excluded_nonreproducible.md
+|- 05_recommended_baseline_sets.md
+|- 06_reproduction_plan.md
+|- 07_reviewer_risk_check.md
+|- 08_self_check.md
+`- 09_final_decision.md
+```
+
+### Quick start
+
+```text
+Use $baseline-selector to choose baselines for my idea.
+Target venue: AAAI 2027.
+Compute budget: 4x A100 for 5 days.
+Time budget: 2 weeks.
+Task: long-context multimodal retrieval.
+Dataset: MSR-VTT.
+Metric: R@1.
+Output profile: paper submission mode
+```
+
+Profile examples:
+
+- `paper submission mode`
+- `fast prototype mode`
+- `limited compute mode`
+- `industry comparison mode`
+- `rebuttal emergency mode`
+
+### Installation
+
+#### Windows
+
+```powershell
+git clone https://github.com/RyanZhou168/baseline-selector.git "$env:USERPROFILE\.codex\skills\baseline-selector"
+```
+
+#### macOS / Linux
+
+```bash
+git clone https://github.com/RyanZhou168/baseline-selector.git ~/.codex/skills/baseline-selector
+```
+
+Restart Codex or open a new session.
+
+### License
 
 MIT.

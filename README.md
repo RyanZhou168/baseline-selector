@@ -6,9 +6,7 @@
 [![English](https://img.shields.io/badge/README-English-black)](#english)
 [![中文](https://img.shields.io/badge/README-中文-lightgrey)](#中文)
 
-A Codex skill for selecting defensible, GitHub-reproducible baselines for research experiments.
-
-This repository packages a single research workflow: turn a research idea, task, draft, or experiment plan into a baseline set that is venue-aware, compute-aware, and checked for open-source reproducibility.
+`baseline-selector` 是一个给 Codex 用的 baseline 选择 skill，目标是把 baseline 选择这件事做得更稳、更像真实投稿前会用的工作流。
 
 ## English
 

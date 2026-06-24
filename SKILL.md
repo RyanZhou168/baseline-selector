@@ -61,14 +61,14 @@ If benchmark, metric, or dataset are unknown, state assumptions and mark the bas
 
 ## Response Language Rule
 
-Match the user's language by default.
+The language of the final user-facing result should follow the language the user uses as closely as possible. Only proper nouns or standard technical names that are not suitable for translation should remain in English.
 
-- If the user asks in Chinese, answer in Chinese.
-- If the user asks in English, answer in English.
+- Answer body text in the user's language.
+- Titles, field names, and decision labels should also follow the user's language whenever practical.
+- Proper nouns such as method names, benchmark names, venue names, repository names, and standard technical terms may remain in English when translation would reduce clarity.
 - If the user mixes languages, follow the dominant language unless the user explicitly requests bilingual output.
-- Keep technical field names, benchmark names, venue names, and method names in their standard form when translation would reduce clarity.
-- Do not switch to English-only output unless the user asks for it.
-- If a structured report is written to files, the report language should also follow the user's language by default.
+- Do not switch to another language for convenience if the user did not ask for it.
+- If a structured report is written to files, the file contents should follow the same rule.
 
 ## Main Workflow
 
@@ -156,6 +156,21 @@ baseline_selection/
 
 ## Decision Labels
 
+When the user asks in Chinese, present the final user-facing labels in Chinese by default:
+
+```text
+selected -> 入选
+selected-if-budget-allows -> 预算允许时入选
+excluded-no-github -> 因无 GitHub 仓库排除
+excluded-empty-repo -> 因空仓库排除
+excluded-unrunnable-repo -> 因仓库不可运行排除
+excluded-task-mismatch -> 因任务不匹配排除
+excluded-metric-mismatch -> 因指标不匹配排除
+excluded-superseded -> 因已被替代排除
+watchlist -> 观察名单
+unknown-needs-verification -> 待核验
+```
+
 Use these labels consistently:
 
 ```text
@@ -174,6 +189,15 @@ unknown-needs-verification
 A candidate labeled `unknown-needs-verification` cannot be selected until the repository is inspected.
 
 ## Final Verdict
+
+When the user asks in Chinese, present the final verdict label in Chinese by default:
+
+```text
+strong baseline set -> 强 baseline 集合
+acceptable baseline set -> 可接受的 baseline 集合
+risky baseline set -> 风险较高的 baseline 集合
+incomplete baseline set -> 不完整的 baseline 集合
+```
 
 Always give one final verdict:
 
@@ -206,4 +230,3 @@ Explain the verdict using:
 - Do not hide non-reproducible SOTA papers; record them in the excluded table with reasons.
 - Do not compare methods across incompatible datasets, splits, metrics, or training settings without marking the mismatch.
 - Do not claim exhaustive coverage when search evidence is incomplete.
-

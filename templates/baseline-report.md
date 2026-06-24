@@ -1,5 +1,27 @@
 # Baseline Selection Report
 
+If the user asks in Chinese, convert user-facing section titles, field names, and decision labels into natural Chinese whenever practical. Keep only proper nouns or standard technical names in English when translation would reduce clarity.
+
+Recommended Chinese label mappings for Chinese requests:
+
+```text
+Task Definition -> 任务定义
+Search Strategy -> 搜索策略
+Candidate Baselines -> 候选 Baseline
+Excluded Non-Reproducible or Non-Selectable Candidates -> 排除项与未纳入候选
+Recommended Baseline Sets -> 推荐 Baseline 集合
+Recommendation for This User -> 面向当前用户的推荐
+Reproduction Plan -> 复现计划
+Reviewer Risk Check -> 审稿风险检查
+Self-Check -> 自检
+Final Verdict -> 最终结论
+selected -> 入选
+selected-if-budget-allows -> 预算允许时入选
+watchlist -> 观察名单
+unknown-needs-verification -> 待核验
+acceptable baseline set -> 可接受的 baseline 集合
+```
+
 ## 1. Task Definition
 
 ```text

@@ -5,7 +5,7 @@
 
 ## 中文版
 
-像认真写论文的人一样选 baseline，而不是半夜刷 citation 凭感觉选。
+把 baseline 选择这件事做得更扎实一点。
 
 `baseline-selector` 是一个 Codex skill，用来把研究想法、任务定义、论文草稿或实验计划，变成一个更可辩护的 baseline 决策流程。它会搜索经典方法、近期强方法、审稿人可能期待的比较对象，以及实用的开源 baseline，然后先经过 GitHub 可复现门槛，再决定哪些方法真正值得跑。
 

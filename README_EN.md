@@ -2,9 +2,8 @@
 
 [![中文](https://img.shields.io/badge/语言-中文-lightgrey)](./README.md) [![English](https://img.shields.io/badge/Language-English-black)](./README_EN.md)
 
-English version. Chinese version is available via the button above.
 
-Choose baselines like a serious paper author, not like someone scrolling citations at 2 a.m.
+Make baseline selection more rigorous and easier to defend.
 
 `baseline-selector` is a Codex skill for turning a research idea, task, paper draft, or experiment plan into a defensible baseline decision. It searches for classic anchors, recent strong methods, reviewer-expected comparisons, and practical open-source baselines, then filters them through a hard GitHub reproducibility gate before recommending what to actually run.
 

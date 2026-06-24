@@ -59,6 +59,17 @@ Compute budget is required for final baseline selection. Ask for GPU type/count,
 
 If benchmark, metric, or dataset are unknown, state assumptions and mark the baseline set as provisional.
 
+## Response Language Rule
+
+Match the user's language by default.
+
+- If the user asks in Chinese, answer in Chinese.
+- If the user asks in English, answer in English.
+- If the user mixes languages, follow the dominant language unless the user explicitly requests bilingual output.
+- Keep technical field names, benchmark names, venue names, and method names in their standard form when translation would reduce clarity.
+- Do not switch to English-only output unless the user asks for it.
+- If a structured report is written to files, the report language should also follow the user's language by default.
+
 ## Main Workflow
 
 0. **Get the current date**
@@ -195,3 +206,4 @@ Explain the verdict using:
 - Do not hide non-reproducible SOTA papers; record them in the excluded table with reasons.
 - Do not compare methods across incompatible datasets, splits, metrics, or training settings without marking the mismatch.
 - Do not claim exhaustive coverage when search evidence is incomplete.
+

@@ -1,0 +1,39 @@
+{
+  "name": "baseline-selector",
+  "display_name": "Baseline Selector",
+  "version": "0.2.0",
+  "description": "A Codex skill for selecting defensible, GitHub-reproducible research baselines with venue awareness, freshness checks, and compute-aware recommendations.",
+  "license": "MIT",
+  "repository": "https://github.com/RyanZhou168/baseline-selector",
+  "author": {
+    "name": "RyanZhou168",
+    "email": "yanzhou@stu.csust.edu.cn"
+  },
+  "skill_entry": "SKILL.md",
+  "agent_config": "agents/openai.yaml",
+  "install_path": "~/.codex/skills/baseline-selector",
+  "supported_clients": [
+    "Codex"
+  ],
+  "distribution": {
+    "format": "single-skill repository",
+    "default_enabled_features": [
+      "github_reproducibility_gate",
+      "freshness_protocol",
+      "domain_routing",
+      "reviewer_risk_audit",
+      "self_check",
+      "profile_aware_recommendation"
+    ],
+    "optional_features": [
+      "manual_eval_suite",
+      "local examples",
+      "structured report generation"
+    ]
+  },
+  "installation": {
+    "method": "git clone",
+    "restart_required": true,
+    "verify_hint": "Open a new Codex session and invoke $baseline-selector."
+  }
+}

@@ -36,14 +36,14 @@ output profile:
 
 ## 3. Candidate Baselines
 
-| Method | Venue+Year | Role | Task Match | Benchmark Match | Metric Match | GitHub Status | Repro Score | Reproduction Risk | Decision |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Method | Baseline Type | Venue+Year or Source | Role | Task Match | Benchmark Match | Metric Match | GitHub Status | Repro Score | Reproduction Risk | Decision |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |  |  |
 
 ### GitHub Evidence Chain
 
 | Method | Repo Exists | Repo Nonempty | Method Code | Train Script | Eval Script | Requirements | Checkpoints | Maintained | Broken Issues | Paper-Code Match |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |  |  |  |
 
 ## 4. Excluded Non-Reproducible or Non-Selectable Candidates
@@ -172,14 +172,14 @@ output profile:
 
 ## 3. 候选 Baseline
 
-| Method | Venue+Year | Role | Task Match | Benchmark Match | Metric Match | GitHub Status | Repro Score | Reproduction Risk | 判定 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Method | Baseline 类型 | 年份与来源 | Role | Task Match | Benchmark Match | Metric Match | GitHub Status | Repro Score | Reproduction Risk | 判定 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |  |  |
 
 ### GitHub 证据链
 
 | Method | Repo Exists | Repo Nonempty | Method Code | Train Script | Eval Script | Requirements | Checkpoints | Maintained | Broken Issues | Paper-Code Match |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |  |  |  |  |
 
 ## 4. 排除项与未纳入候选
@@ -297,3 +297,4 @@ next 3 actions:
 风险较高的 baseline 集合
 不完整的 baseline 集合
 ```
+

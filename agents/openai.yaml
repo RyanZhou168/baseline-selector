@@ -1,0 +1,4 @@
+interface:
+  display_name: "Baseline Selector"
+  short_description: "Choose reproducible research baselines"
+  default_prompt: "Use $baseline-selector to select defensible, GitHub-reproducible baselines for my research idea, target venue, and compute budget."

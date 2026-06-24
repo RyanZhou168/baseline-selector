@@ -1,6 +1,8 @@
 # Baseline Selector
 
-中文说明在前，English version below.
+[![中文](https://img.shields.io/badge/语言-中文-black)](./README.md) [![English](https://img.shields.io/badge/Language-English-lightgrey)](./README_EN.md)
+
+中文说明在前，English version is available via the button above.
 
 ## 中文版
 
@@ -162,13 +164,13 @@ Output profile: paper submission mode
 #### Windows
 
 ```powershell
-git clone https://github.com/<your-name>/baseline-selector.git "$env:USERPROFILE\.codex\skills\baseline-selector"
+git clone https://github.com/RyanZhou168/baseline-selector.git "$env:USERPROFILE\.codex\skills\baseline-selector"
 ```
 
 #### macOS / Linux
 
 ```bash
-git clone https://github.com/<your-name>/baseline-selector.git ~/.codex/skills/baseline-selector
+git clone https://github.com/RyanZhou168/baseline-selector.git ~/.codex/skills/baseline-selector
 ```
 
 然后重启 Codex，或者新开一个会话。
@@ -193,12 +195,6 @@ git clone https://github.com/<your-name>/baseline-selector.git ~/.codex/skills/b
 - 推荐必须结合会议目标和算力预算。
 - 明确记录重要但未纳入的方法。
 - 最终必须 self-check。
-
-## English Version
-
-A concise English README is available here:
-
-- [README_EN.md](D:/desktop/baselineskill/README_EN.md)
 
 ## License
 

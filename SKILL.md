@@ -154,28 +154,20 @@ baseline_selection/
 `- 09_final_decision.md
 ```
 
-## Decision Labels
+## Source Label Sets
 
-When the user asks in Chinese, present the final user-facing labels in Chinese by default:
+Choose one source label set at the start of the response and use it consistently.
 
-```text
-selected -> 入选
-selected-if-budget-allows -> 预算允许时入选
-excluded-no-github -> 因无 GitHub 仓库排除
-excluded-empty-repo -> 因空仓库排除
-excluded-unrunnable-repo -> 因仓库不可运行排除
-excluded-task-mismatch -> 因任务不匹配排除
-excluded-metric-mismatch -> 因指标不匹配排除
-excluded-superseded -> 因已被替代排除
-watchlist -> 观察名单
-unknown-needs-verification -> 待核验
-```
+### English Label Set
 
-Use these labels consistently:
+Use this set when the user asks in English:
 
 ```text
+Decision Labels
 selected
 selected-if-budget-allows
+selected-if-run-check-passes
+selected-as-harness
 excluded-no-github
 excluded-empty-repo
 excluded-unrunnable-repo
@@ -184,29 +176,87 @@ excluded-metric-mismatch
 excluded-superseded
 watchlist
 unknown-needs-verification
-```
 
-A candidate labeled `unknown-needs-verification` cannot be selected until the repository is inspected.
-
-## Final Verdict
-
-When the user asks in Chinese, present the final verdict label in Chinese by default:
-
-```text
-strong baseline set -> 强 baseline 集合
-acceptable baseline set -> 可接受的 baseline 集合
-risky baseline set -> 风险较高的 baseline 集合
-incomplete baseline set -> 不完整的 baseline 集合
-```
-
-Always give one final verdict:
-
-```text
+Final Verdict Labels
 strong baseline set
 acceptable baseline set
 risky baseline set
 incomplete baseline set
+
+Section Titles
+Task Definition
+Search Strategy
+Candidate Baselines
+GitHub Evidence Chain
+Excluded Non-Reproducible or Non-Selectable Candidates
+Recommended Baseline Sets
+Profile-Aware Recommendation Lens
+Minimal Set
+Standard Set
+Defensive Set
+Recommendation for This User
+Reproduction Plan
+Reviewer Risk Check
+Self-Check
+Per-Baseline Verification
+Coverage Check
+Final Verdict
+Must Run
+Nice To Run
 ```
+
+### Chinese Label Set
+
+Use this set when the user asks in Chinese:
+
+```text
+判定标签
+入选
+预算允许时入选
+运行检查通过后入选
+作为辅助框架纳入
+因无 GitHub 仓库排除
+因空仓库排除
+因仓库不可运行排除
+因任务不匹配排除
+因指标不匹配排除
+因已被替代排除
+观察名单
+待核验
+
+最终结论标签
+强 baseline 集合
+可接受的 baseline 集合
+风险较高的 baseline 集合
+不完整的 baseline 集合
+
+章节标题
+任务定义
+搜索策略
+候选 Baseline
+GitHub 证据链
+排除项与未纳入候选
+推荐 Baseline 集合
+画像化推荐视角
+最小集合
+标准集合
+防守型集合
+面向当前用户的推荐
+复现计划
+审稿风险检查
+自检
+逐个 Baseline 核验
+覆盖检查
+最终结论
+必须运行
+建议补充
+```
+
+Do not output the English source labels directly in a Chinese response unless the label itself is a proper noun or the user explicitly asks for the English wording.
+
+## Final Verdict
+
+Always give one final verdict from the active source label set.
 
 Explain the verdict using:
 

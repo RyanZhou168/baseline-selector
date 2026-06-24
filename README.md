@@ -4,9 +4,20 @@
 
 ## 中文版
 
-把 baseline 选择这件事做得更扎实一点。
+这是一个帮你为论文实验选 baseline 的 Codex skill。
 
-`baseline-selector` 是一个 Codex skill，用来把研究想法、任务定义、论文草稿或实验计划，整理成一个更可辩护的 baseline 决策过程。它会搜索经典方法、近期强方法、审稿人可能期待的比较对象，以及实用的开源 baseline，然后先经过 GitHub 可复现门槛，再决定哪些方法真正值得跑。
+`baseline-selector` 会把研究想法、任务定义、论文草稿或实验计划，整理成一个更可辩护的 baseline 决策过程。它会搜索经典方法、近期强方法、审稿人可能期待的比较对象，以及实用的开源 baseline，然后先经过 GitHub 可复现门槛，再决定哪些方法真正值得跑。
+
+### 30 秒看懂
+
+| 你给它什么 | 它帮你做什么 |
+| --- | --- |
+| 一个 research idea | 帮你定义任务边界、benchmark 范围和 baseline bucket |
+| 一个 benchmark 或任务 | 找经典、近期、可复现、可对比的 baseline |
+| 一份 baseline list | 检查有没有漏掉关键方法、是否有不公平比较 |
+| 一个投稿目标 | 给出更像投稿版的 baseline 集合和 reviewer-risk audit |
+| 一个算力预算 | 把 baseline 分成 must run / nice to run / too expensive |
+| 几篇很强但没代码的论文 | 记录为排除项，并提供可复现替代方案 |
 
 ### 首屏示例
 
@@ -26,6 +37,11 @@
 - reviewer-risk audit
 - 最终 baseline 决策前的 self-check
 ```
+
+### 示例
+
+- [LLM Agent Memory for ICML 2027](D:/desktop/baselineskill/examples/llm-agent-memory.md)
+- [3D Detection on nuScenes](D:/desktop/baselineskill/examples/3d-detection-nuscenes.md)
 
 ### 这个项目解决什么问题
 
@@ -182,9 +198,20 @@ git clone https://github.com/RyanZhou168/baseline-selector.git ~/.codex/skills/b
 
 ## English
 
-Make baseline selection more rigorous and easier to defend.
+This is a Codex skill for choosing baselines for research experiments in a more defensible way.
 
-`baseline-selector` is a Codex skill for turning a research idea, task, paper draft, or experiment plan into a more defensible baseline-selection process. It searches for classic anchors, recent strong methods, reviewer-expected comparisons, and practical open-source baselines, then filters them through a hard GitHub reproducibility gate before recommending what to actually run.
+`baseline-selector` turns a research idea, task, paper draft, or experiment plan into a more disciplined baseline-selection process. It searches for classic anchors, recent strong methods, reviewer-expected comparisons, and practical open-source baselines, then filters them through a hard GitHub reproducibility gate before recommending what to actually run.
+
+### In 30 seconds
+
+| What you give it | What it helps you do |
+| --- | --- |
+| A research idea | Frame the task, benchmark scope, and baseline buckets |
+| A benchmark or task | Find classic, recent, reproducible, and fair baselines |
+| A baseline list | Audit gaps, weak comparisons, and fairness issues |
+| A submission target | Build a venue-aware set plus reviewer-risk audit |
+| A compute budget | Split baselines into must run / nice to run / too expensive |
+| Strong papers without code | Record them as exclusions and suggest reproducible substitutes |
 
 ### First-screen example
 
@@ -205,24 +232,10 @@ Output:
 - self-check before the final baseline decision
 ```
 
-### What this project is for
+### Examples
 
-Baseline selection often becomes messy in practice. Common patterns include:
-
-- picking famous papers from memory
-- reusing method names from a related-work section
-- trusting leaderboard rows without checking code
-- selecting more baselines than the budget can actually support
-- forgetting the comparisons reviewers are likely to ask for
-
-`baseline-selector` tries to turn that into a more disciplined process:
-
-- record the real search date and freshness window
-- record the real venue and year for each selected baseline
-- pass the GitHub reproducibility gate before selection
-- recommend sets that respect venue goals and compute limits
-- record excluded candidates explicitly
-- run a self-check before the final recommendation
+- [LLM Agent Memory for ICML 2027](D:/desktop/baselineskill/examples/llm-agent-memory.md)
+- [3D Detection on nuScenes](D:/desktop/baselineskill/examples/3d-detection-nuscenes.md)
 
 ### What makes it different
 
@@ -263,21 +276,6 @@ Compute examples:
 - `1x 4090 for 4 days`
 - `inference-only for API baselines`
 
-### Output structure
-
-```text
-baseline_selection/
-|- 01_task_definition.md
-|- 02_search_strategy.md
-|- 03_candidate_baselines.md
-|- 04_excluded_nonreproducible.md
-|- 05_recommended_baseline_sets.md
-|- 06_reproduction_plan.md
-|- 07_reviewer_risk_check.md
-|- 08_self_check.md
-`- 09_final_decision.md
-```
-
 ### Quick start
 
 ```text
@@ -290,14 +288,6 @@ Dataset: MSR-VTT.
 Metric: R@1.
 Output profile: paper submission mode
 ```
-
-Profile examples:
-
-- `paper submission mode`
-- `fast prototype mode`
-- `limited compute mode`
-- `industry comparison mode`
-- `rebuttal emergency mode`
 
 ### Installation
 
